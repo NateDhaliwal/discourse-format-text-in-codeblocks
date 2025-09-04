@@ -19,8 +19,8 @@ export default class AddCodeblockButton extends Component {
     <DButton
     @icon="code"
     @action={{this.addCodeFences}}
-    @label={{add_code_fence_btn_label}}
-    @title={{add_code_fence_btn_title}}
+    @label={{i18n (themePrefix "add_code_fence_btn_label")}}
+    @title={{i18n (themePrefix "add_code_fence_btn_title")}}
     class="btn-flat"
     />
   </template>
