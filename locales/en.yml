@@ -3,3 +3,5 @@ en:
     description: "Allows TL4s and staff users to quickly add code fences around a selected block of text."
     settings:
       example_setting: "A description of a setting."
+  add_code_fence_btn_label: "Add code fence"
+  add_code_fence_btn_title: "Add code fence"
