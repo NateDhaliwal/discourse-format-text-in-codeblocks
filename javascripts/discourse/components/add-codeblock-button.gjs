@@ -17,7 +17,7 @@ export default class AddCodeblockButton extends Component {
 
   @action
   getMenuData() {
-    console.log(menuData);
+    console.log(this.menuData);
   }
 
   <template>
