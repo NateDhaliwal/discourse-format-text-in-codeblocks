@@ -4,20 +4,15 @@ import { action } from "@ember/object";
 import { selectedRange } from "discourse/lib/utilities";
 
 export default class AddCodeblockButton extends Component {
-  menuData = {
-    ...this.args.outletArgs.data,
-    quoteState: {
-      buffer: this.args.outletArgs.data.quoteState.buffer,
-      opts: this.args.outletArgs.data.quoteState.opts,
-      postId: this.args.outletArgs.data.quoteState.postId,
-    },
-    post: this.args.outletArgs.post,
-    selectedRange: selectedRange(),
-  };
+  get selectedText() {
+    return this.args.outletArgs.data.quoteState.buffer.trim();
+  }
 
   @action
-  getMenuData() {
-    console.log(this.menuData);
+  addCodeFences() {
+    let selectedText = this.selectedText;
+    newText = "```" + "\n" + selectedText + "\n" + "```";
+    console.log(newText);
   }
 
   <template>
