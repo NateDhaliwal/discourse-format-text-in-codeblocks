@@ -5,6 +5,10 @@ import { selectedRange } from "discourse/lib/utilities";
 import { i18n } from "discourse-i18n";
 
 export default class AddCodeblockButton extends Component {
+  get topic() {
+    return this.args.outletArgs.data.topic;
+  }
+
   get post() {
     return this.topic.postStream.findLoadedPost(
       this.args.data.quoteState.postId
