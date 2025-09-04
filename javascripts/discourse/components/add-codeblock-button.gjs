@@ -5,8 +5,14 @@ import { selectedRange } from "discourse/lib/utilities";
 import { i18n } from "discourse-i18n";
 
 export default class AddCodeblockButton extends Component {
-  if (this.args.outletArgs.data.canEdit === false) {
-    return;
+  // if (this.args.outletArgs.data.canEdit === false) {
+  //   return;
+  // }
+
+  get post() {
+    return this.topic.postStream.findLoadedPost(
+      this.args.data.quoteState.postId
+    );
   }
 
   get selectedText() {
@@ -19,7 +25,8 @@ export default class AddCodeblockButton extends Component {
     let selectedText = this.selectedText;
     let newText = "```" + "\n" + selectedText + "\n" + "```";
     console.log(newText);
-    this.args.outletArgs.data.editPost();
+    console.log(this.post);
+    this.args.outletArgs.data.editPost(this.post);
   }
 
   <template>
