@@ -2,6 +2,7 @@ import Component from "@glimmer/component";
 import DButton from "discourse/components/d-button";
 import { action } from "@ember/object";
 import { selectedRange } from "discourse/lib/utilities";
+import { i18n } from "discourse-i18n";
 
 export default class AddCodeblockButton extends Component {
   get selectedText() {
