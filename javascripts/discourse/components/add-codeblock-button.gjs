@@ -18,7 +18,7 @@ export default class AddCodeblockButton extends Component {
   <template>
     <DButton
     @icon="code"
-    @action={{this.getMenuData}}
+    @action={{this.addCodeFences}}
     class="btn-flat"
     />
   </template>
