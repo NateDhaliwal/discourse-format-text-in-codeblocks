@@ -6,6 +6,7 @@ import { i18n } from "discourse-i18n";
 
 export default class AddCodeblockButton extends Component {
   get selectedText() {
+    console.log(this.args.outletArgs);
     return this.args.outletArgs.data.quoteState.buffer.trim();
   }
 
