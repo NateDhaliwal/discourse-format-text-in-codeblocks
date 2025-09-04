@@ -1,5 +1,5 @@
 en:
   theme_metadata:
-    description: "TODO"
+    description: "Allows TL4s and staff users to quickly add code fences around a selected block of text."
     settings:
       example_setting: "A description of a setting."
