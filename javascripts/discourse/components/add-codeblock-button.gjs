@@ -1,5 +1,6 @@
 import Component from "@glimmer/component";
 import DButton from "discourse/components/d-button";
+import { action } from "@ember/object";
 import { selectedRange } from "discourse/lib/utilities";
 
 export default class AddCodeblockButton extends Component {
@@ -14,11 +15,15 @@ export default class AddCodeblockButton extends Component {
     selectedRange: selectedRange(),
   };
 
-  console.log(menuData);
+  @action
+  getMenuData() {
+    console.log(menuData);
+  }
 
   <template>
     <DButton
     @icon="code"
+    @action={{this.getMenuData}}
     class="btn-flat"
     />
   </template>
