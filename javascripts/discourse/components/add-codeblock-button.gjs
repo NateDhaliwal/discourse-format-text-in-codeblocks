@@ -11,7 +11,7 @@ export default class AddCodeblockButton extends Component {
   @action
   addCodeFences() {
     let selectedText = this.selectedText;
-    newText = "```" + "\n" + selectedText + "\n" + "```";
+    let newText = "```" + "\n" + selectedText + "\n" + "```";
     console.log(newText);
   }
 
