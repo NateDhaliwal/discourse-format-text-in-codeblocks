@@ -43,7 +43,7 @@ export default class AddCodeblockButton extends Component {
       popupAjaxError(e);
     }
 
-    const newRawPost = rawPost.replaceAll(selectedText, newText);
+    const newRawPost = rawPost.replace(selectedText, newText);
     console.log(rawPost.includes(selectedText));
     console.log(selectedRange());
 
