@@ -8,3 +8,4 @@ en:
   add_code_fence_btn_title: "Add code fence"
   add_code_fence_edit_reason: "Replace text with codeblock"
   add_code_fence_success_message: "Code fences added!"
+  add_code_fence_faliure_message: "Could not find selected text in post"
