@@ -1,4 +1,6 @@
 import { action } from "@ember/object";
+import { service } from "@ember/service";
+
 import Component from "@glimmer/component";
 
 import { ajax } from "discourse/lib/ajax";
@@ -7,6 +9,8 @@ import { popupAjaxError } from "discourse/lib/ajax-error";
 import { selectedRange } from "discourse/lib/utilities";
 
 export default class AddCodeblockButton extends Component {
+  @service toasts;
+
   get topic() {
     return this.args.outletArgs.data.topic;
   }
@@ -49,6 +53,13 @@ export default class AddCodeblockButton extends Component {
       await post.save({
         raw: newRawPost,
         edit_reason: I18n.t(themePrefix("add_code_fence_edit_reason"))
+      }).then(() => {
+        this.toasts.success({
+          duration: "short",
+          data: {
+            message: I18n.t(themePrefix("add_code_fence_success_message")),
+          },
+        });
       });
     } catch (e) {
       popupAjaxError(e);
