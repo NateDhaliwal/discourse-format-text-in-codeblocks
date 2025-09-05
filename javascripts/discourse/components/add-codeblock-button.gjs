@@ -21,8 +21,8 @@ export default class AddCodeblockButton extends Component {
     return this.args.outletArgs.data.quoteState.buffer.trim();
   }
 
-  get postRaw(post) {
-    return ajax(`/posts/{post.id}.json`).raw;
+  get postRaw() {
+    return ajax(`/posts/{this.post.id}.json`).raw;
   }
 
   @action
@@ -31,7 +31,7 @@ export default class AddCodeblockButton extends Component {
     let newText = "```" + "\n" + selectedText + "\n" + "```";
     let post = this.post;
     console.log(this.post.id);
-    console.log(this.postRaw(this.post));
+    console.log(this.postRaw());
     // let rawPost = post.raw;
     // console.log(rawPost);
     // rawPost.replace(selectedText, "\n" + newText + "\n");
