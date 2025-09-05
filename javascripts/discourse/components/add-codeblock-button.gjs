@@ -24,11 +24,16 @@ export default class AddCodeblockButton extends Component {
   async addCodeFences() {
     let selectedText = this.selectedText;
     let newText = "```" + "\n" + selectedText + "\n" + "```";
-    console.log(newText);
+    let post = this.post;
+    let rawPost = post.raw;
+
+    rawPost.replace(selectedText, "\n" + newText + "\n");
+
     await this.post.save({
-      "raw": "hello",
+      "raw": rawPost,
       "edit_reason": "why not"
     });
+
     // console.log(this.store);
     // https://github.com/discourse/discourse/blob/main/app/assets/javascripts/discourse/app/routes/post.js#L4
     // console.log(this.store.find("post", this.post.id));
@@ -37,11 +42,11 @@ export default class AddCodeblockButton extends Component {
 
   <template>
     <DButton
-    @icon="code"
-    @action={{this.addCodeFences}}
-    @label={{themePrefix "add_code_fence_btn_label"}}
-    @title={{themePrefix "add_code_fence_btn_title"}}
-    class="btn-flat"
+      @icon="code"
+      @action={{this.addCodeFences}}
+      @label={{themePrefix "add_code_fence_btn_label"}}
+      @title={{themePrefix "add_code_fence_btn_title"}}
+      class="btn-flat"
     />
   </template>
 }
