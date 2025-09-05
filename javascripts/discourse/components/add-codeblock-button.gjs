@@ -1,9 +1,10 @@
-import Component from "@glimmer/component";
 import { action } from "@ember/object";
+import Component from "@glimmer/component";
 
-import DButton from "discourse/components/d-button";
-import { selectedRange } from "discourse/lib/utilities";
 import { ajax } from "discourse/lib/ajax";
+import DButton from "discourse/components/d-button";
+import { popupAjaxError } from "discourse/lib/ajax-error";
+import { selectedRange } from "discourse/lib/utilities";
 
 export default class AddCodeblockButton extends Component {
   get topic() {
@@ -17,14 +18,12 @@ export default class AddCodeblockButton extends Component {
   }
 
   get selectedText() {
-    // console.log(this.args.outletArgs);
     return this.args.outletArgs.data.quoteState.buffer.trim();
   }
 
-  async postRaw() {
+  async getPostRaw() {
     const result = await ajax(`/posts/${this.post.id}`);
-    console.log(result.raw);
-    return result;
+    return result.raw.trim();
   }
 
   @action
@@ -32,16 +31,18 @@ export default class AddCodeblockButton extends Component {
     let selectedText = this.selectedText;
     let newText = "```" + "\n" + selectedText + "\n" + "```";
     let post = this.post;
-    console.log(this.post.id);
-    console.log(this.postRaw());
-    // let rawPost = post.raw;
-    // console.log(rawPost);
-    // rawPost.replace(selectedText, "\n" + newText + "\n");
 
-    await this.post.save({
-      raw: "New raw of the contents. I hope you find it interesting." /* rawPost */,
-      edit_reason: I18n.t(themePrefix("add_code_fence_edit_reason"))
-    });
+    const rawPost = this.getPostRaw();
+    rawPost.replace(selectedText, "\n" + newText + "\n");
+
+    try {
+      await this.post.save({
+        raw: "New raw of the contents. I hope you find it interesting." /* rawPost */,
+        edit_reason: I18n.t(themePrefix("add_code_fence_edit_reason"))
+      });
+    } catch (e) {
+      popupAjaxError(e);
+    }
 
     // console.log(this.store);
     // https://github.com/discourse/discourse/blob/main/app/assets/javascripts/discourse/app/routes/post.js#L4
