@@ -1,7 +1,9 @@
 import Component from "@glimmer/component";
-import DButton from "discourse/components/d-button";
 import { action } from "@ember/object";
+
+import DButton from "discourse/components/d-button";
 import { selectedRange } from "discourse/lib/utilities";
+import { ajax } from "discourse/lib/ajax";
 
 export default class AddCodeblockButton extends Component {
   get topic() {
@@ -19,12 +21,17 @@ export default class AddCodeblockButton extends Component {
     return this.args.outletArgs.data.quoteState.buffer.trim();
   }
 
+  get postRaw(post) {
+    return ajax(`/posts/{post.id}.json`).raw;
+  }
+
   @action
   async addCodeFences() {
     let selectedText = this.selectedText;
     let newText = "```" + "\n" + selectedText + "\n" + "```";
     let post = this.post;
     console.log(this.post.id);
+    console.log(this.postRaw(this.post));
     // let rawPost = post.raw;
     // console.log(rawPost);
     // rawPost.replace(selectedText, "\n" + newText + "\n");
