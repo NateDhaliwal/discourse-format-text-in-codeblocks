@@ -38,7 +38,7 @@ export default class AddCodeblockButton extends Component {
 
     try {
       await this.post.save({
-        raw: "New raw of the contents. I hope you find it interesting." /* rawPost */,
+        raw: rawPost,
         edit_reason: I18n.t(themePrefix("add_code_fence_edit_reason"))
       });
     } catch (e) {
