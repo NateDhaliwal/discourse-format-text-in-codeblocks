@@ -39,12 +39,19 @@ export default class AddCodeblockButton extends Component {
       popupAjaxError(e);
     }
 
-    const newRawPost = rawPost? rawPost.replaceAll(selectedText, "\n" + newText + "\n") : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+    if (!rawPost) return;
 
-    console.log(selectedText);
-    console.log(newText);
-    console.log(rawPost);
-    console.log(newRawPost);
+    // Try to locate the *first* occurrence of the selection
+    const startIndex = rawPost.indexOf(selectedText);
+    if (startIndex === -1) {
+      console.warn("Selected text not found in rawPost");
+      return;
+    }
+    const endIndex = startIndex + selectedText.length;
+
+    const newRawPost = rawPost.slice(0, startIndex) + fenced + rawPost.slice(endIndex);
+
+    console.log({ selectedText, fenced, newRawPost });
 
     try {
       await post.save({
