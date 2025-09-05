@@ -11,7 +11,7 @@ export default class AddCodeblockButton extends Component {
   @service toasts;
 
   get topic() {
-    return this.args.outletArgs.data.topic;
+    return this.args.data.topic;
   }
 
   get post() {
