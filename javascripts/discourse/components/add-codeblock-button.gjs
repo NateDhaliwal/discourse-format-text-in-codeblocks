@@ -21,11 +21,8 @@ export default class AddCodeblockButton extends Component {
     return this.args.outletArgs.data.quoteState.buffer.trim();
   }
 
-  get postRaw() {
-    let result = ajax(`/posts/${this.post.id}`);
-    setTimeout(() => {
-      console.log("Delayed for 1 second.");
-    }, "1000");
+  async postRaw() {
+    const result = await ajax(`/posts/${this.post.id}`);
     console.log(result.raw);
     return result;
   }
