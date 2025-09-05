@@ -30,10 +30,11 @@ export default class AddCodeblockButton extends Component {
   async addCodeFences() {
     let selectedText = this.selectedText;
     let newText = "```" + "\n" + selectedText + "\n" + "```";
+    let rawPost;
     const post = this.post;
 
     try {
-      const rawPost = await this.getPostRaw();
+      rawPost = await this.getPostRaw();
     } catch (e) {
       popupAjaxError(e);
     }
