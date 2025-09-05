@@ -70,7 +70,7 @@ export default class AddCodeblockButton extends Component {
 
     try {
       await post.save({
-        raw: newRawPost,
+        raw: this.replaceSelection(rawPost, selectedText), // newRawPost,
         edit_reason: I18n.t(themePrefix("add_code_fence_edit_reason"))
       }).then(() => {
         this.toasts.success({
