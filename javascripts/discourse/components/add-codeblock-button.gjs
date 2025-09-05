@@ -6,7 +6,6 @@ import Component from "@glimmer/component";
 import { ajax } from "discourse/lib/ajax";
 import DButton from "discourse/components/d-button";
 import { popupAjaxError } from "discourse/lib/ajax-error";
-import { selectedRange } from "discourse/lib/utilities";
 
 export default class AddCodeblockButton extends Component {
   @service toasts;
@@ -22,7 +21,7 @@ export default class AddCodeblockButton extends Component {
   }
 
   get selectedText() {
-    return this.args.outletArgs.data.quoteState.buffer.trim();
+    return this.args.data.quoteState.buffer.trim();
   }
 
   async getPostRaw() {
@@ -30,10 +29,29 @@ export default class AddCodeblockButton extends Component {
     return result.raw.trim();
   }
 
+  replaceSelection(rawPost, selectedText) {
+    const startIndex = rawPost.indexOf(selectedText);
+    if (startIndex === -1) {
+      this.toasts.error({
+        duration: "short",
+        data: {
+          message: I18n.t(themePrefix("add_code_fence_faliure_message")),
+        },
+      });
+      return rawPost;
+    }
+  
+    const endIndex = startIndex + selectedText.length;
+    const newText = "\n```\n" + selectedText + "\n```\n";
+  
+    return rawPost.slice(0, startIndex) + newText + rawPost.slice(endIndex);
+  }
+
+
   @action
   async addCodeFences() {
     let selectedText = this.selectedText;
-    let newText = "\n" + "```" + "\n" + selectedText + "\n" + "```" + "\n";
+    // let newText = "\n" + "```" + "\n" + selectedText + "\n" + "```" + "\n";
     let rawPost;
     const post = this.post;
 
@@ -43,11 +61,11 @@ export default class AddCodeblockButton extends Component {
       popupAjaxError(e);
     }
 
-    const newRawPost = rawPost.replaceAll(selectedText, newText);
-    console.log(rawPost.includes(selectedText));
-    console.log(selectedRange());
+    // const newRawPost = rawPost.replaceAll(selectedText, newText);
+    // console.log(rawPost.includes(selectedText));
+    // console.log(selectedRange());
 
-    console.log({ selectedText, newText, newRawPost, rawPost });
+    console.log({ selectedText, /* newText,*/ newRawPost, rawPost });
 
     try {
       await post.save({
