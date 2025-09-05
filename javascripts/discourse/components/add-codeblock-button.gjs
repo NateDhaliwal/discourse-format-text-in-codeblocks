@@ -40,8 +40,7 @@ export default class AddCodeblockButton extends Component {
     }
 
     const newRawPost = rawPost.replaceAll(selectedText, newText);
-    let a = rawPost.replaceAll("\n", "|$|$|$|");
-    console.log({ selectedText, newRawPost, a });
+    console.log({ selectedText, newText, newRawPost });
 
     try {
       await post.save({
