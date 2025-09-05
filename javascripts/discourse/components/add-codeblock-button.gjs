@@ -15,7 +15,7 @@ export default class AddCodeblockButton extends Component {
   }
 
   get selectedText() {
-    console.log(this.args.outletArgs);
+    // console.log(this.args.outletArgs);
     return this.args.outletArgs.data.quoteState.buffer.trim();
   }
 
@@ -24,6 +24,7 @@ export default class AddCodeblockButton extends Component {
     let selectedText = this.selectedText;
     let newText = "```" + "\n" + selectedText + "\n" + "```";
     let post = this.post;
+    console.log(this.post);
     let rawPost = post.raw;
     console.log(rawPost);
     rawPost.replace(selectedText, "\n" + newText + "\n");
