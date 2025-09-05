@@ -65,6 +65,7 @@ export default class AddCodeblockButton extends Component {
     // console.log(rawPost.includes(selectedText));
     // console.log(selectedRange());
 
+    console.log(this.replaceSelection(rawPost, selectedText);
     console.log({ selectedText, /* newText,*/ newRawPost, rawPost });
 
     try {
