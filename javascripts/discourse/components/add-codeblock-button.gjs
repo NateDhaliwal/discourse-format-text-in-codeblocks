@@ -22,7 +22,7 @@ export default class AddCodeblockButton extends Component {
   }
 
   get postRaw() {
-    let result = ajax(`/posts/${this.post.id}.json`).then((result) => return result.json());
+    let result = ajax(`/posts/${this.post.id}.json`).json();
     console.log(result);
     return result;
   }
