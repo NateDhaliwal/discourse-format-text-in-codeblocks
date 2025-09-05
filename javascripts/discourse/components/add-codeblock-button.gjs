@@ -30,25 +30,23 @@ export default class AddCodeblockButton extends Component {
   async addCodeFences() {
     let selectedText = this.selectedText;
     let newText = "```" + "\n" + selectedText + "\n" + "```";
-    let post = this.post;
-
-    const rawPost = await this.getPostRaw();
-    console.log(rawPost);
-    rawPost.replace(selectedText, "\n" + newText + "\n");
+    const post = this.post;
 
     try {
-      await this.post.save({
-        raw: rawPost,
+      const rawPost = await this.getPostRaw();
+    } catch (e) {
+      popupAjaxError(e);
+    }
+    const newRawPost = rawPost.replace(selectedText, "\n" + newText + "\n");
+
+    try {
+      await post.save({
+        raw: newRawPost,
         edit_reason: I18n.t(themePrefix("add_code_fence_edit_reason"))
       });
     } catch (e) {
       popupAjaxError(e);
     }
-
-    // console.log(this.store);
-    // https://github.com/discourse/discourse/blob/main/app/assets/javascripts/discourse/app/routes/post.js#L4
-    // console.log(this.store.find("post", this.post.id));
-    // this.args.outletArgs.data.editPost(this.post);
   }
 
   <template>
