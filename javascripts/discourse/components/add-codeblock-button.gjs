@@ -27,7 +27,7 @@ export default class AddCodeblockButton extends Component {
     console.log(newText);
     this.post.save({
       raw: "hello",
-      editReason: "why not"
+      edit_reason: "why not"
     });
     // console.log(this.store);
     // https://github.com/discourse/discourse/blob/main/app/assets/javascripts/discourse/app/routes/post.js#L4
