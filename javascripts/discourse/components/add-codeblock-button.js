@@ -9,7 +9,6 @@ export default class AddCodeblockButton extends Component {
   }
 
   get post() {
-    console.log(this.args.data);
     return this.topic.postStream.findLoadedPost(
       this.args.data.quoteState.postId
     );
@@ -25,13 +24,13 @@ export default class AddCodeblockButton extends Component {
     let selectedText = this.selectedText;
     let newText = "```" + "\n" + selectedText + "\n" + "```";
     let post = this.post;
-    console.log(this.post.cooked);
-    let rawPost = post.raw;
-    console.log(rawPost);
-    rawPost.replace(selectedText, "\n" + newText + "\n");
+    console.log(this.post.id);
+    //let rawPost = post.raw;
+    //console.log(rawPost);
+    //rawPost.replace(selectedText, "\n" + newText + "\n");
 
     await this.post.save({
-      raw: rawPost,
+      raw: "New raw of the contents. I hope you find it interesting." /* rawPost */,
       edit_reason: I18n.t(themePrefix("add_code_fence_edit_reason"))
     });
 
