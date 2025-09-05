@@ -23,6 +23,7 @@ export default class AddCodeblockButton extends Component {
 
   async getPostRaw() {
     const result = await ajax(`/posts/${this.post.id}`);
+    console.log(result.raw.trim());
     return result.raw.trim();
   }
 
