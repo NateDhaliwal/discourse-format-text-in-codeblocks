@@ -44,7 +44,7 @@ export default class AddCodeblockButton extends Component {
 
     const newRawPost = rawPost.replaceAll(regex, newText);
 
-    console.log({ selectedText, fenced, newRawPost });
+    console.log({ selectedText, escapedTarget, regex, newRawPost });
 
     try {
       await post.save({
