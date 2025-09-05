@@ -21,11 +21,11 @@ export default class AddCodeblockButton extends Component {
   }
 
   @action
-  addCodeFences() {
+  async addCodeFences() {
     let selectedText = this.selectedText;
     let newText = "```" + "\n" + selectedText + "\n" + "```";
     console.log(newText);
-    this.post.save({
+    await this.post.save({
       "raw": "hello",
       "edit_reason": "why not"
     });
