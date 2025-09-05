@@ -23,7 +23,6 @@ export default class AddCodeblockButton extends Component {
 
   async getPostRaw() {
     const result = await ajax(`/posts/${this.post.id}`);
-    console.log(result.raw.trim());
     return result.raw.trim();
   }
 
@@ -33,7 +32,7 @@ export default class AddCodeblockButton extends Component {
     let newText = "```" + "\n" + selectedText + "\n" + "```";
     let post = this.post;
 
-    const rawPost = this.getPostRaw();
+    const rawPost = await this.getPostRaw();
     console.log(rawPost);
     rawPost.replace(selectedText, "\n" + newText + "\n");
 
