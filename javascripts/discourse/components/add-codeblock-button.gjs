@@ -26,8 +26,8 @@ export default class AddCodeblockButton extends Component {
     let newText = "```" + "\n" + selectedText + "\n" + "```";
     console.log(newText);
     this.post.save({
-      raw: "hello",
-      edit_reason: "why not"
+      "raw": "hello",
+      "edit_reason": "why not"
     });
     // console.log(this.store);
     // https://github.com/discourse/discourse/blob/main/app/assets/javascripts/discourse/app/routes/post.js#L4
