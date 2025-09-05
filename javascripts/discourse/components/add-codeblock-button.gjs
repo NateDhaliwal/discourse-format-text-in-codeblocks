@@ -33,6 +33,7 @@ export default class AddCodeblockButton extends Component {
     let post = this.post;
 
     const rawPost = this.getPostRaw();
+    console.log(rawPost);
     rawPost.replace(selectedText, "\n" + newText + "\n");
 
     try {
