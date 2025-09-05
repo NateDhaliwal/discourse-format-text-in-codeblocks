@@ -38,7 +38,8 @@ export default class AddCodeblockButton extends Component {
     } catch (e) {
       popupAjaxError(e);
     }
-    const newRawPost = rawPost.replace(selectedText, "\n" + newText + "\n");
+
+    const newRawPost = rawPost? rawPost.replace(selectedText, "\n" + newText + "\n") : "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
 
     console.log(selectedText);
     console.log(newText);
