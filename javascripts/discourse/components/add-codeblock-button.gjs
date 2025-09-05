@@ -9,6 +9,7 @@ export default class AddCodeblockButton extends Component {
   }
 
   get post() {
+    console.log(this.topic.postStream);
     return this.topic.postStream.findLoadedPost(
       this.args.data.quoteState.postId
     );
