@@ -39,12 +39,9 @@ export default class AddCodeblockButton extends Component {
       popupAjaxError(e);
     }
 
-    const escapedTarget = selectedText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // Escape special regex characters
-    const regex = new RegExp(escapedTarget, 'gm');
+    const newRawPost = rawPost.replaceAll(selectedText, newText);
 
-    const newRawPost = rawPost.replaceAll(regex, newText);
-
-    console.log({ selectedText, escapedTarget, regex, newRawPost });
+    console.log({ selectedText, escapedTarget, regex, newRawPost, rawPost.replaceAll("\n", "|$|$|$|") });
 
     try {
       await post.save({
