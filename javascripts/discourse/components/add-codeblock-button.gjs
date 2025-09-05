@@ -29,7 +29,7 @@ export default class AddCodeblockButton extends Component {
   @action
   async addCodeFences() {
     let selectedText = this.selectedText;
-    let newText = "```" + "\n" + selectedText + "\n" + "```";
+    let newText = "\n" + "```" + "\n" + selectedText + "\n" + "```" + "\n";
     let rawPost;
     const post = this.post;
 
@@ -39,17 +39,10 @@ export default class AddCodeblockButton extends Component {
       popupAjaxError(e);
     }
 
-    if (!rawPost) return;
+    const escapedTarget = selectedText.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // Escape special regex characters
+    const regex = new RegExp(escapedTarget, 'gm');
 
-    // Try to locate the *first* occurrence of the selection
-    const startIndex = rawPost.indexOf(selectedText);
-    if (startIndex === -1) {
-      console.warn("Selected text not found in rawPost");
-      return;
-    }
-    const endIndex = startIndex + selectedText.length;
-
-    const newRawPost = rawPost.slice(0, startIndex) + fenced + rawPost.slice(endIndex);
+    const newRawPost = rawPost.replaceAll(regex, newText);
 
     console.log({ selectedText, fenced, newRawPost });
 
