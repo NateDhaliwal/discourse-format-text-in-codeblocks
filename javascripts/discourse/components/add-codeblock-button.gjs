@@ -26,7 +26,7 @@ export default class AddCodeblockButton extends Component {
     let newText = "```" + "\n" + selectedText + "\n" + "```";
     console.log(newText);
     console.log(this.post);
-    console.log(this);
+    console.log(this.args);
     // console.log(this.store);
     // https://github.com/discourse/discourse/blob/main/app/assets/javascripts/discourse/app/routes/post.js#L4
     // console.log(this.store.find("post", this.post.id));
