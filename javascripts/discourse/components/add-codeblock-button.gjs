@@ -25,6 +25,8 @@ export default class AddCodeblockButton extends Component {
     let selectedText = this.selectedText;
     let newText = "```" + "\n" + selectedText + "\n" + "```";
     let post = this.post;
+    console.log(post);
+    console.log(I18n.t(themePrefix("add_code_fence_edit_reason")));
     let rawPost = post.raw;
 
     rawPost.replace(selectedText, "\n" + newText + "\n");
