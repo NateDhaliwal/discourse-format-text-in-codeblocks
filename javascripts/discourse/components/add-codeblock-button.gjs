@@ -2,7 +2,6 @@ import Component from "@glimmer/component";
 import DButton from "discourse/components/d-button";
 import { action } from "@ember/object";
 import { selectedRange } from "discourse/lib/utilities";
-//import { i18n } from "discourse-i18n";
 
 export default class AddCodeblockButton extends Component {
   get topic() {
@@ -25,10 +24,8 @@ export default class AddCodeblockButton extends Component {
     let selectedText = this.selectedText;
     let newText = "```" + "\n" + selectedText + "\n" + "```";
     let post = this.post;
-    console.log(post);
-    console.log(I18n.t(themePrefix("add_code_fence_edit_reason")));
     let rawPost = post.raw;
-
+    console.log(rawPost);
     rawPost.replace(selectedText, "\n" + newText + "\n");
 
     await this.post.save({
