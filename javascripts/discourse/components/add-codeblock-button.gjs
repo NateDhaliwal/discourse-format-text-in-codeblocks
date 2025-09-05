@@ -30,8 +30,8 @@ export default class AddCodeblockButton extends Component {
     rawPost.replace(selectedText, "\n" + newText + "\n");
 
     await this.post.save({
-      "raw": rawPost,
-      "edit_reason": "why not"
+      raw: rawPost,
+      edit_reason: I18n.t(themePrefix("add_code_fence_edit_reason"))
     });
 
     // console.log(this.store);
